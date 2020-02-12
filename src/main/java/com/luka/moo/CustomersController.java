@@ -32,7 +32,7 @@ public class CustomersController {
     }
 
 
-    @RequestMapping(path = "/addresses/{userId}")
+    @RequestMapping(path = "/addresses/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Customer getOneUser(@PathVariable("userId") String userId) {
         Preconditions.checkNotNull(userId, "Must provide user id");
         return customerService.getOne(userId);
