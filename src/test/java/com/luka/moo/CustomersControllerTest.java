@@ -30,7 +30,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class CustomersControllerTest {
 
 
-
     @Autowired
     private MockMvc mvc;
 
@@ -61,14 +60,6 @@ public class CustomersControllerTest {
         given(customerService.getAll()).willReturn(allCustomers);
         given(customerService.getAllWithSurname("alex")).willReturn(Arrays.asList(alex,secondAlex));
         given(customerService.getOne("jo_id")).willReturn(jo);
-    }
-
-    @Test
-    public void whenTestRootApp_thenOk() throws Exception {
-        mvc.perform(get("/")
-                .contentType(MediaType.TEXT_PLAIN_VALUE))
-                .andExpect(status().isOk());
-
     }
 
     @Test
