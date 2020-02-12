@@ -17,8 +17,15 @@ public class Customer extends DbObject {
     private String address;
     private String id;
 
-    public Customer() {
+    private Customer() {
         this.id = generateId();
+    }
+
+    public Customer(String name, String surname, String address) {
+        this();
+        this.name = name;
+        this.surname = surname;
+        this.address = address;
     }
 
     public String getName() {

@@ -1,4 +1,4 @@
-package com.luka.moo;
+package com.luka.moo.services;
 
 import com.google.common.base.Preconditions;
 import com.luka.moo.helpers.ResourceNotFoundException;
@@ -7,7 +7,6 @@ import com.luka.moo.model.DataAction;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -16,21 +15,19 @@ import java.util.stream.Collectors;
 @Component
 public class CustomerService implements DataAction<Customer> {
 
-    private List<Customer> customers;
 
-    private Map<String, Customer> customersMap;
+    private static Map<String, Customer> customersMap = new ConcurrentHashMap<>();
+    private static final String[] names = new String[]{"Luka", "Jo", "Alice", "Luke", "Misty", "Rusty"};
 
-    public CustomerService() {
-        customers = new ArrayList<>();
-        customersMap = new ConcurrentHashMap<>();
-        System.out.println("Created customer service");
+    public static void initDummyData()  {
+        for (int i = 0; i < names.length; i++) {
+            Customer temp = new Customer(names[i], "sur"+names[i], "Address for" + names[i]);
+            customersMap.put(temp.getId(), temp);
+        }
     }
-
-
 
     @Override
     public void save(Customer customer) {
-        customers.add(customer);
         customersMap.put(customer.getId(), customer);
     }
 
@@ -58,7 +55,7 @@ public class CustomerService implements DataAction<Customer> {
     public List<Customer> getAllWithSurname(String surname) {
         Preconditions.checkNotNull(surname, "Must provide surname to compare");
 
-        return customers
+        return customersMap.values()
                 .stream()
                 .filter(customer -> customer.getSurname() == surname)
                 .collect(Collectors.toList());

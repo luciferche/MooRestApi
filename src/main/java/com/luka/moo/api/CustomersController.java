@@ -1,17 +1,16 @@
 package com.luka.moo.api;
 
 
-import com.google.common.base.Preconditions;
-import com.luka.moo.CustomerService;
 import com.luka.moo.model.Customer;
+import com.luka.moo.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
-@RestController("")
+@RestController
 public class CustomersController {
 
     @Autowired
@@ -20,8 +19,7 @@ public class CustomersController {
 
     @RequestMapping(method = RequestMethod.GET, path="/customers", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Customer> getAddressesBySurname(@RequestParam(value = "surname", required = false, defaultValue = "") String surname) {
-        System.out.println("GET ADDRESSES BY SURNAME " + surname);
-        if(surname == null || surname.trim() == "") {
+        if(surname == null || surname.trim().equals("")) {
             return customerService.getAll();
         } else {
             return customerService.getAllWithSurname(surname);
@@ -30,8 +28,8 @@ public class CustomersController {
 
 
     @RequestMapping(path = "/customers/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Customer getOneUser(@PathVariable("userId") String userId) {
-        Preconditions.checkNotNull(userId, "Must provide user id");
+    public Customer getOneUser(@NonNull @PathVariable("userId") String userId) {
+//        Preconditions.checkNotNull(userId, "Must provide user id");
         return customerService.getOne(userId);
     }
 }
