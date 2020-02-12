@@ -5,6 +5,7 @@ import com.luka.moo.helpers.ResourceNotFoundException;
 import com.luka.moo.model.Customer;
 import com.luka.moo.model.DataAction;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
-@Component
+@Service
 public class CustomerService implements DataAction<Customer> {
 
 

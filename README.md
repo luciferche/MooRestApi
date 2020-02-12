@@ -2,6 +2,8 @@
 REST server - Test project for Moo
 Use gradle to build the app from the sources using command -
 `./gradlew bootJar`
+Use `./gradlew test` to run tests on the app.
+
 The executable jar is located in the build/libs directory and you can run it by executing the following command:
 `java -jar build/libs/MooRestApi-1.0-SNAPSHOT.jar`
 
@@ -47,3 +49,13 @@ are in the `model` package
 `helpers` package cosists of custom exception class
 
 
+###Tests
+
+`test/java/com.luka.moo` package
+Testing for:
+* unknown path `/asdfasd`
+* root path `/` 
+* `/customers` endpoint
+* `/customers/id` endpoint
+
+Use `./gradlew test` to run tests on the app.
