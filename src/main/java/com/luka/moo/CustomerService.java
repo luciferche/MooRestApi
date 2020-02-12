@@ -1,6 +1,7 @@
 package com.luka.moo;
 
 import com.google.common.base.Preconditions;
+import com.luka.moo.helpers.ResourceNotFoundException;
 import com.luka.moo.model.Customer;
 import com.luka.moo.model.DataAction;
 import org.springframework.stereotype.Component;
@@ -42,8 +43,11 @@ public class CustomerService implements DataAction<Customer> {
     @Override
     public Customer getOne(String id) {
         Preconditions.checkNotNull(id, "Must provide user id");
-
-        return customersMap.get(id);
+        Customer customer = customersMap.get(id);
+        if(customer == null) {
+            throw new ResourceNotFoundException("Customer not found");
+        }
+        return customer;
     }
 
     /**
