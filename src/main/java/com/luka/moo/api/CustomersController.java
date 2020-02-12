@@ -29,7 +29,6 @@ public class CustomersController {
 
     @RequestMapping(path = "/customers/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Customer getOneUser(@NonNull @PathVariable("userId") String userId) {
-//        Preconditions.checkNotNull(userId, "Must provide user id");
         return customerService.getOne(userId);
     }
 }

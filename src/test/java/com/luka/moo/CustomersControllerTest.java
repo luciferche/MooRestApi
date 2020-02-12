@@ -42,16 +42,7 @@ public class CustomersControllerTest {
     private Customer jo = new Customer("jo", "jo", "address jo");
     private Customer secondAlex = new Customer("second", "alex", "address second alex");
 
-//    @TestConfiguration
-//    static class EmployeeServiceImplTestContextConfiguration {
-//
-//        @Bean
-//        public DataAction customerService() {
-//            return new CustomerService();
-//        }
-//    }
-//    @Autowired
-//    private DataAction dataAction;
+
     @Before
     public void setup() {
 
