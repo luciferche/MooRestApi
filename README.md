@@ -4,6 +4,26 @@ Use gradle to build the app from the sources using command -
 `./gradlew bootJar`
 The executable jar is located in the build/libs directory and you can run it by executing the following command:
 `java -jar build/libs/MooRestApi-1.0-SNAPSHOT.jar`
+
+App can be accessed through `localhost:8080/`
+It only accepts GET requests. 
+Only endpoint that actually does something is `/customers`
+`GET /customers` will return list of customers
+`GET /customers?surname=somesurname` will return list of customers who have surname _somesurname_
+
+Customer objects contain:
+* name
+* surname
+* address
+* id
+
+`GET /customers/{id}` with customer id provided API returns specific customer and all his details.
+
+
+
+
+ 
+Code
 ---
 
 App resides in `java/main/com.luka.moo` package
